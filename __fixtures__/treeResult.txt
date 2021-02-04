@@ -1,0 +1,16 @@
+{
+    name: frontend-project2
+  - version: 1.0.0
+  + version: 1.0.1
+    type: module
+    main: gendiff.js
+  - author: 
+  + author: rinat
+  - license: ISC
+  dependencies: {
+      commander: ^7.0.0
+    - lodash: ^4.17.15
+    + new: ^1.1.1
+  }
+  + description: my program
+}
