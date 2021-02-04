@@ -9,8 +9,8 @@ program
   .arguments('<firstFile> <secondFile> [type]')
   .description('Compares two configuration files and shows a difference')
   .version('1.0.0.', '-V, --version', 'output the version number')
-  .option('-f, --format [type]', 'output format')
-  .action((firstFile, secondFile, type) => {
+  .option('-f, --format [type]', 'output format', 'tree')
+  .action((firstFile, secondFile, type = 'tree') => {
     printDiff(firstFile, secondFile, type);
   });
 

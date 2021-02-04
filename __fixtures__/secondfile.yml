@@ -1,0 +1,9 @@
+name: 'frontend-project2'
+version: '1.0.1'
+type: 'module'
+description: 'my program'
+main: 'gendiff.js'
+author: 'rinat'
+dependencies:
+  commander: '^7.0.0'
+  new: '^1.1.1'

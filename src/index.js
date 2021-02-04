@@ -1,14 +1,12 @@
 import genDiff from './gendiff.js';
 import parse from './parse.js';
-import tree from './tree.js';
+import diffFormat from './formatters/index.js'
 
 const printDiff = (firstFile, secondFile, type) => {
   const object1 = parse(firstFile);
   const object2 = parse(secondFile);
   const difference = genDiff(object1, object2);
-  if (type === 'tree') {
-    console.log(tree(difference));
-  }
+  console.log(diffFormat(difference, type));
 };
 
 export default printDiff;
