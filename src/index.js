@@ -11,6 +11,4 @@ const printDiff = (firstFile, secondFile, type) => {
   }
 };
 
-
-
 export default printDiff;
