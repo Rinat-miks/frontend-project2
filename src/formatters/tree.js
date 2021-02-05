@@ -21,6 +21,9 @@ const tree = (difference, deepCount = 0) => {
         if (obj.changetype === 'added') {
           return `${accum}\n${tab.repeat(deepCount)}  + ${key}: ${obj.value}`;
         }
+        if (obj.changetype === 'updated') {
+          return `${accum}\n${tab.repeat(deepCount)}  - ${key}: ${obj.originalValue}\n${tab.repeat(deepCount)}  + ${key}: ${obj.newValue}`;
+        }
         return accum;
       }, '');
     }

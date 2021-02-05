@@ -3,3 +3,4 @@ Property 'author' was updated. From '' to 'rinat'
 Property 'license' was removed
 Property 'dependencies.lodash' was removed
 Property 'dependencies.new' was added with value: '^1.1.1'
+Property 'description' was added with value: 'my program'

@@ -1,11 +1,8 @@
-/* eslint-disable import/order */
-import genDiff from '../src/gendiff.js';
-import parse from '../src/parse.js';
-import tree from '../src/formatters/tree.js';
+import getDiff from '../src/index.js';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import fs from 'fs';
 import path from 'path';
+import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -13,18 +10,21 @@ const __dirname = dirname(__filename);
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
-const treeExpect = readFile('treeResult.txt');
-const json1 = parse(getFixturePath('firstfile.json'));
-const json2 = parse(getFixturePath('secondfile.json'));
-const difference1 = genDiff(json1, json2);
+test.each([
+  ['.json', '.yml', 'tree'],
+  ['.json', '.json', 'tree'],
+  ['.yml', '.yml', 'tree'],
+  ['.json', '.yml', 'plain'],
+  ['.json', '.json', 'plain'],
+  ['.yml', '.yml', 'plain'],
+  ['.json', '.yml', 'JSON'],
+  ['.json', '.json', 'JSON'],
+  ['.yml', '.yml', 'JSON'],
+])('file1: %s, file2: %s, format: %s', (firstFileExtension, secondFileExtension, format) => {
+  const firstFilePath = getFixturePath('firstfile' + firstFileExtension);
+  const secondFilePath = getFixturePath('secondfile' + secondFileExtension);
+  const expectFilePath = format + 'Result.txt';
+  const expectFile = readFile(expectFilePath);
 
-const yml1 = parse(getFixturePath('firstfile.yml'));
-const yml2 = parse(getFixturePath('secondfile.yml'));
-const difference2 = genDiff(yml1, yml2);
-
-test('json-tree', () => {
-  expect(tree(difference1)).toEqual(treeExpect);
-});
-test('yml-tree', () => {
-  expect(tree(difference2)).toEqual(treeExpect);
+  expect((getDiff(firstFilePath, secondFilePath, format))).toEqual(expectFile);
 });

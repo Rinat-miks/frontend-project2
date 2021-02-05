@@ -6,7 +6,7 @@ const diffFormat = (difference, type) => {
   if (type === 'tree') {
     return tree(difference);
   }
-  if (type === 'json') {
+  if (type === 'JSON') {
     return json(difference);
   }
   if (type === 'plain') {

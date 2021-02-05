@@ -1,9 +1,11 @@
-import fs from 'fs';
 import yaml from 'js-yaml';
 
-export default (filename) => {
-  if (filename.endsWith('.yml')) {
-    return yaml.load(fs.readFileSync(filename, 'utf-8'));
+export default (file, extension) => {
+  if (extension === '.json') {
+    return JSON.parse(file);
   }
-  return JSON.parse(fs.readFileSync(filename, 'utf-8'));
+  if (extension === '.yml') {
+    return yaml.load(file);
+  }
+  return console.log('unknown file format');
 };

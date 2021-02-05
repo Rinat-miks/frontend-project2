@@ -31,8 +31,7 @@ const genDiff = (object1, object2) => {
         return acc;
       }
       acc[key] = [
-        { value: object1[key], changetype: 'deleted' },
-        { value: object2[key], changetype: 'added' },
+        { originalValue: object1[key], newValue: object2[key], changetype: 'updated' },
       ];
       return acc;
     }

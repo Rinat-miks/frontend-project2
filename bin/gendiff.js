@@ -3,7 +3,7 @@
 
 import commander from 'commander';
 import program from 'commander';
-import printDiff from './src/index.js';
+import getDiff from '../src/index.js';
 
 program
   .arguments('<firstFile> <secondFile> [type]')
@@ -11,7 +11,7 @@ program
   .version('1.0.0.', '-V, --version', 'output the version number')
   .option('-f, --format [type]', 'output format', 'tree')
   .action((firstFile, secondFile, type = 'tree') => {
-    printDiff(firstFile, secondFile, type);
+    console.log(getDiff(firstFile, secondFile, type));
   });
 
 commander.parse(process.argv);
